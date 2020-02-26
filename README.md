@@ -76,7 +76,7 @@ ProxyPass /wireguardui/ http://192.168.1.10:8080/
 ProxyPassReverse /wireguardui/ http://192.168.1.10:8080/
 ```
 
-Where /wireguardui/ is the relative URL to access the wg-ui interface on the apacjhe server and http://192.168.1.10:8080/ is the address that the wg-ui can be accessed.
+Where /wireguardui/ is the relative URL to access the wg-ui interface on the apache server and http://192.168.1.10:8080/ is the address that the wg-ui can be accessed.
 When complete restart the  web server.
 
 
