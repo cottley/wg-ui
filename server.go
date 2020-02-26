@@ -343,7 +343,7 @@ func (s *Server) Start() error {
 	} else {
 		log.Debug("Serving static assets embedded in binary")
 		router.GET("/about", s.Index)
-		router.GET("/client/:client", s.Index)
+		router.GET("/client", s.Index)
 		router.NotFound = s.assets
 	}
 
@@ -363,6 +363,18 @@ func (s *Server) userFromHeader(handler http.Handler) http.Handler {
 		if *authUserHeader == "X-Goog-Authenticated-User-Email" {
 			user = strings.TrimPrefix(user, "accounts.google.com:")
 		}
+		
+		// If there is a cookie for wguser set already, assume authorized
+        for _, cookie := range r.Cookies() {
+          if cookie.Name == "wguserfront" {
+			if cookie.Value != "anonymous" {
+			  // Only set non-anonymous users
+              user = cookie.Value
+			  log.WithField("user", user).Debug("Found cookie and set user for wguser")
+			}
+          }
+		}
+
 
 		cookie := http.Cookie{
 			Name:  "wguser",

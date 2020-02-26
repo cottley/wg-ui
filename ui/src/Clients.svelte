@@ -5,7 +5,7 @@
 
   export let user;
 
-  let clientsUrl = "/api/v1/users/" + user + "/clients";
+  let clientsUrl = "./api/v1/users/" + user + "/clients";
   let clients = [];
 
   async function getClients() {

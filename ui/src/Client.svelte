@@ -18,7 +18,8 @@
   const color = "hsl(" + (hash % 360) + ",50%,95%)";
 
   function onEdit() {
-    navigate("/client/" + clientId, { replace: true });
+    window.location.href = './client?id=' + clientId;
+    //navigate("./client?id=" + clientId, { replace: true });
   }
 </script>
 
@@ -46,7 +47,7 @@
   </div>
 
 
-  <img src="/api/v1/users/{user}/clients/{clientId}?format=qrcode" class="qrcode float-right" alt="Mobile client config"/>
+  <img src="./api/v1/users/{user}/clients/{clientId}?format=qrcode" class="qrcode float-right" alt="Mobile client config"/>
 
   <i class="material-icons" aria-hidden="true">devices</i>
   <h3 class="mdc-typography--headline5">
@@ -60,6 +61,6 @@
   </dl>
 
   <div class="download">
-    <Button  href="/api/v1/users/{user}/clients/{clientId}?format=config" variant="raised"><Label>Download Config</Label></Button>
+    <Button  href="./api/v1/users/{user}/clients/{clientId}?format=config" variant="raised"><Label>Download Config</Label></Button>
   </div>
 </Paper>

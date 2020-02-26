@@ -14,6 +14,11 @@ A basic, self-contained management service for [WireGuard](https://wireguard.com
  * Zero external dependencies - just a single binary using the wireguard kernel module
  * Container-first deployment
 
+## Forked Codebase Features
+
+ * Added automatic authentication if cookie wguserfront is set
+ * Re-coded root relative UI for directory relative UI so UI would work on a reverse proxy subdirectory
+
 ![Screenshot](wireguard-ui.png)
 
 ## Running

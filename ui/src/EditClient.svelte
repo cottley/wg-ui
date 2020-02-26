@@ -10,11 +10,27 @@
   import { onMount } from 'svelte';
   import { link, navigate } from "svelte-routing";
 
-  export let clientId;
+  var qs = (function(a) {
+    if (a == "") return {};
+    var b = {};
+    for (var i = 0; i < a.length; ++i)
+    {
+        var p=a[i].split('=', 2);
+        if (p.length == 1)
+            b[p[0]] = "";
+        else
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+    }
+    return b;
+    })(window.location.search.substr(1).split('&'));
+
+  var clientIdQS = qs['id'];
+
+  export let clientId = clientIdQS;
 
   const user = Cookie().get("wguser", { fromRes: true});
 
-  const clientUrl = `/api/v1/users/` + user + `/clients/` + clientId;
+  const clientUrl = `./api/v1/users/` + user + `/clients/` + clientId;
 
   let client = {};
   let clientName = "";
@@ -40,13 +56,15 @@
       body: JSON.stringify(client),
     });
     client = await res.json();
-    navigate("/", { replace: true });
+	window.location.href = './';
+    //navigate("./", { replace: true });
     console.log("Saved changes", res);
   }
 
 
   function handleBackClick(event) {
-    navigate("/", { replace: true });
+    window.location.href = './';
+    //navigate("./", { replace: true });
   }
 
   async function deleteHandler(e) {
@@ -56,12 +74,15 @@
           method: "DELETE",
         });
         await res;
-        navigate("/", { replace: true });
+        window.location.href = './';
+		//navigate("./", { replace: true });
         break;
       default:
         break;
     }
   }
+
+
 
 	onMount(getClient);
 </script>

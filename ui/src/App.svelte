@@ -14,7 +14,18 @@
   const cookies = Cookie();
   export let user = cookies.get("wguser", { fromRes: true}) || "anonymous";
 
-  export let url = "";
+  var urlRelativePath = './';
+  
+  if (document.location.pathname.indexOf("/about") !== -1) {
+    urlRelativePath = './about';
+  }
+  
+  if (document.location.pathname.indexOf("/client") !== -1) {
+    urlRelativePath = './client';
+  }  
+  
+  export let url = urlRelativePath;
+  
 </script>
 
 <style>
@@ -35,14 +46,14 @@ footer {
 
 <div class="mdc-typography">
 
-  <Router url="{url}">
+  <Router url="{url}" basepath="./">
 
-    <Nav user="{user}" />
+    <Nav user="{user}"/>
 
     <main role="main" class="container">
       <div>
-        <Route path="client/:clientId" component="{EditClient}" />
-        <Route path="about" component="{About}" />
+        <Route path="/client" component="{EditClient}" />
+        <Route path="/about" component="{About}" />
         <Route path="/"><Clients user="{user}" /></Route>
       </div>
     </main>
