@@ -49,7 +49,7 @@ sudo ./wireguard-ui --log-level=debug --dev-ui-server http://localhost:5000
 
 ## ARM Build
 
-The code can be asily build for the ARM platform so it can, for example, run natively on a Raspberry PI.
+The code can be easily built for the ARM platform so it can, for example, run natively on a Raspberry PI.
 
 ```
 make ui
