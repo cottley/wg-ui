@@ -57,6 +57,17 @@ go-bindata-assetfs -prefix ui/dist ui/dist
 env GOOS=linux GOARCH=arm GOARM=5 go build .
 ```
 
+### Running on ARM
+
+As root copy the wireguard-ui ARM binary to /usr/local/bin and then run
+
+```
+/usr/local/bin/wireguard-ui --wg-dns="192.168.1.10" --wg-endpoint="my.domain.com:51820"
+```
+
+Where 192.168.1.10 is a local DNS server (for example when running PiHole) and my.domain.com is how the VPN can be accessed over the Internet.
+
+You may want to add the --client-ip-range flag if there is a previously configured wireguard interface on the machine and you need to use those IPs instead.
 
 ### Apache2 Reverse Proxy
 
