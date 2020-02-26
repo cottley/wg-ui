@@ -58,6 +58,28 @@ env GOOS=linux GOARCH=arm GOARM=5 go build .
 ```
 
 
+### Apache2 Reverse Proxy
+
+You can access the wg-ui interface via an apache2 reverse proxy by adding the following before the </Virtualhost> tag in /etc/apache2/sites-enabled/000-default.conf. Your configuration file may differ depending on the services enabled.
+
+Install mod_proxy and restart apache. The following example is for Ubuntu.
+
+```
+sudo a2enmod proxy
+sudo systemctl restart apache2
+```
+
+Add the following lines.
+
+```
+ProxyPass /wireguardui/ http://192.168.1.10:8080/
+ProxyPassReverse /wireguardui/ http://192.168.1.10:8080/
+```
+
+Where /wireguardui/ is the relative URL to access the wg-ui interface on the apacjhe server and http://192.168.1.10:8080/ is the address that the wg-ui can be accessed.
+When complete restart the  web server.
+
+
 ## Contributing
 
 We welcome community contributions to this project.
