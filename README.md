@@ -90,6 +90,29 @@ ProxyPassReverse /wireguardui/ http://192.168.1.10:8080/
 Where /wireguardui/ is the relative URL to access the wg-ui interface on the apache server and http://192.168.1.10:8080/ is the address that the wg-ui can be accessed.
 When complete restart the  web server.
 
+### Lighthttpd reverse proxy
+
+You can access the wg-ui interface via a lighthttpd reverse proxy by creating a 99-reverse-proxy-wireguard.conf in the /etc/lighttpd/conf-available directory with the following content:
+
+```
+server.modules += ( "mod_proxy" )
+
+$HTTP["url"] =~ "^/wireguardui/" {
+    proxy.header = ( "map-urlpath" => ("/wireguardui/" => "/") )
+    proxy.server = ( "" => ( "" => ( "host" => "192.168.1.10", "port" => 8080)))
+}
+```
+
+Where /wireguardui/ is the virtual path on the lighthttpd server, 192.168.1.10 is the host that wg-ui is running on and 8080 is the port wg-ui is running on.
+
+When complete enable the module and force reload to apply the changes. 
+
+```
+# /usr/sbin/lighty-enable-mod reverse-proxy-wireguard
+Enabling reverse-proxy-wireguard: ok
+Run "service lighttpd force-reload" to enable changes
+# service lighttpd force-reload
+```
 
 ## Contributing
 
