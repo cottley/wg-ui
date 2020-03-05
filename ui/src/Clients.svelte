@@ -73,7 +73,7 @@ padding: 0;
     <div class="col help">
       <h3>Instructions</h3>
       <ol>
-        <li><a href="https://www.wireguard.com/install/">Install WireGuard</a></li>
+        <li><a href="https://www.wireguard.com/install/" target="_blank">Install WireGuard</a></li>
         <li>Download your WireGuard config</li>
         <li>Connect to the VPN server</li>
       </ol>

@@ -62,10 +62,10 @@ footer {
 
   <footer>
     <p>
-      Powered by <a href="https://github.com/EmbarkStudios/wireguard-ui">WireGuard UI</a>.
+      Powered by <a href="https://github.com/EmbarkStudios/wireguard-ui" target="_blank">WireGuard UI</a>.
     </p>
     <p>
-      Copyright &copy; 2019 <a href="https://embark-studios.com">Embark Studios</a>.
+      Copyright &copy; 2019 <a href="https://embark-studios.com" target="_blank">Embark Studios</a>.
     </p>
   </footer>
 </div>
